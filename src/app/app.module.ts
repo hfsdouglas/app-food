@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID, DEFAULT_CURRENCY_CODE } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -13,12 +13,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { TelaCategoriaComponent } from './tela-categoria/tela-categoria.component';
+
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
     AppComponent,
     TelaCardapioComponent,
-    TelaPedidoComponent
+    TelaPedidoComponent,
+    TelaCategoriaComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule, 
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt'},
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,18 +1,25 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row class="app-title">Cardápio - Doug-Food</mat-toolbar-row>
-    <mat-toolbar-row class="toolbar-cart-value">
-        <a alt-text="VER PEDIDOS" routerLink="/pedido">
-            <mat-icon [matBadge]="1" matBadgeColor="accent">shopping_cart</mat-icon>
-        </a>
+    <mat-toolbar-row class="toolbar-cart-home">
+        <div class="flex-1">
+            <a id=toolbar-home routerLink="/categoria">
+                <mat-icon>home_rounded</mat-icon>
+            </a>
+            <a id="toolbar-cart" alt-text="VER PEDIDOS" routerLink="/pedido">
+                <mat-icon [matBadge]="1" matBadgeColor="accent">shopping_cart</mat-icon>
+            </a>
+        </div>
         <span>R$ 100,00</span>
     </mat-toolbar-row>
 </mat-toolbar>
 <mat-action-list>
     <ng-container *ngFor="let produto of produtos; let i = index">
-        <h2 *ngIf="i === 0 || produto.categoria !== produtos[i -1].categoria">{{ produto.categoria }}</h2>
+        <h2 *ngIf="i === 0 "><strong>{{ produto.categoria }}</strong></h2>
         <button mat-list-item>
-            <span class="flex-1">{{ produto.descricao }}</span>
-            <span>{{ produto.preco }}</span>
+            <div class="button-desc-value">
+                <span class="flex-1">{{ produto.descricao }}</span>
+                <span>{{ produto.preco | currency }}</span>
+            </div>
         </button>
     </ng-container>
 </mat-action-list>

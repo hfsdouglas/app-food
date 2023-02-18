@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Produto } from '../produto';
+import { ProdutosService } from '../produtos.service';
 import { TelaPedidoComponent } from '../tela-pedido/tela-pedido.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tela-cardapio',
@@ -9,12 +10,26 @@ import { TelaPedidoComponent } from '../tela-pedido/tela-pedido.component';
   styleUrls: ['./tela-cardapio.component.sass']
 })
 export class TelaCardapioComponent implements OnInit {
+  
+  categoria: string = '';
   produtos: Produto[] = []; 
-  constructor(private httpClient: HttpClient) {}
+
+  constructor(public produtosService: ProdutosService, private route: ActivatedRoute) {}
+  
   ngOnInit() {
-    this.httpClient.get<Produto[]>('http://localhost:3000/cardapio')
-    .subscribe(produtos => {
-      this.produtos = produtos;
-    })
+  
+    this.produtosService.getProducts()
+      .subscribe(produtos => 
+        produtos.map(produto => {
+          if (produto.categoria === this.categoria) {
+            this.produtos.push(produto);
+          }
+        })
+      );
+    
+    this.route.queryParams.subscribe(
+      params => {
+        this.categoria = params['categoria'];
+      });
   }
 }
