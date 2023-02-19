@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PedidoService } from '../pedido.service';
 
 @Component({
   selector: 'app-tela-pedido',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./tela-pedido.component.sass']
 })
 export class TelaPedidoComponent {
-
+  
+  constructor(public pedidoService: PedidoService) {}
 }

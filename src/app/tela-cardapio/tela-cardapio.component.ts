@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Produto } from '../produto';
 import { ProdutosService } from '../produtos.service';
-import { TelaPedidoComponent } from '../tela-pedido/tela-pedido.component';
 import { ActivatedRoute } from '@angular/router';
+import { PedidoService } from '../pedido.service';
 
 @Component({
   selector: 'app-tela-cardapio',
@@ -14,7 +14,11 @@ export class TelaCardapioComponent implements OnInit {
   categoria: string = '';
   produtos: Produto[] = []; 
 
-  constructor(public produtosService: ProdutosService, private route: ActivatedRoute) {}
+  constructor(
+    public produtosService: ProdutosService, 
+    private route: ActivatedRoute,
+    public pedidoService: PedidoService
+    ) {}
   
   ngOnInit() {
   

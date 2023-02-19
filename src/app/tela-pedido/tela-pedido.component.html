@@ -1,1 +1,32 @@
-<p>tela-pedido works!</p>
+<mat-toolbar class="header-items" color="primary">
+    <mat-toolbar-row class="app-title">Doug-Food</mat-toolbar-row>
+    <mat-toolbar-row>Carrinho</mat-toolbar-row>
+</mat-toolbar>
+<mat-action-list id="product-list">
+    <mat-list-item *ngFor="let product of pedidoService.products; let i = index">
+        <div id="pedido-products-container">
+            <ng-container>
+                <span id="pedido-product-qtd">({{ product.qtd }}x) - </span>
+                <span class="flex-1" id="pedido-product-description">{{ product.produto.descricao }}</span>
+            </ng-container>
+            <ng-container>
+                <span id="pedido-product-price">{{ product.produto.preco | currency }}</span>
+                <button id="pedido-product-delete-btn" (click)="pedidoService.deleteProduct(i)"><mat-icon>delete</mat-icon></button>
+            </ng-container>
+        </div>
+    </mat-list-item>
+    <mat-list-item *ngIf="pedidoService.qtdTotal === 0">Seu pedido está vazio.</mat-list-item>
+</mat-action-list>
+<mat-toolbar class="footer-actions" color="primary">
+    <mat-toolbar-row>
+        <strong class="flex-1">Total</strong>
+        <strong>{{ pedidoService.sum | currency }}</strong>
+    </mat-toolbar-row> 
+    <mat-toolbar-row class="btn-actions">
+        <div class="flex-1 actions">
+            <a id="btn-add-product" routerLink="/categoria" mat-raised-button>Adicionar Mais</a>
+            <button mat-raised-button (click)="pedidoService.clean()">Limpar</button>
+        </div>
+        <button mat-raised-button color="accent">Finalizar Pedido</button>
+    </mat-toolbar-row>
+</mat-toolbar>

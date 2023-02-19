@@ -1,6 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
-
 html, body 
   height: 100%
 
@@ -8,17 +6,43 @@ body
   margin: 0
   font-family: Roboto, "Helvetica Neue", sans-serif
 
+app-tela-pedido,
+app-tela-cardapio,
+app-tela-categoria
+  display: flex
+  flex-direction: column
+  height: 100vh
+
+.header-items
+  flex-grow: 0
+  flex-basis: auto
+
 .flex-1 
-    flex: 1
+  flex: 1
 
 a
-    text-decoration: none
-    color: white
+  text-decoration: none
+  color: white
 
 .app-title 
-    justify-content: center
-    font-weight: bold
+  justify-content: center
+  font-weight: bold
 
 .toolbar-cart-value
-    display: flex
-    justify-content: space-between
+  display: flex
+  justify-content: space-between
+
+.mdc-list
+  padding: 0
+
+#product-list
+  overflow-y: scroll
+  flex-basis: auto
+  flex-grow: 1
+
+.footer-actions
+  flex-grow: 0
+  flex-basis: 110px
+
+#total-row
+  display: flex
